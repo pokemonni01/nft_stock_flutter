@@ -8,21 +8,23 @@ abstract class OpenSeaApi {
 }
 
 class OpenSeaApiImpl extends OpenSeaApi {
-  InterceptedClient _client;
+  final InterceptedClient _client;
 
   OpenSeaApiImpl(this._client);
 
   @override
   Future<bool> getAssets() async {
+    print("getAssets");
     var responseModel;
     try {
       final queryParameters = {
         'owner': '0x6b008e74f2cfc661babba620e319b4778216a8fa',
         'order_direction': 'desc',
         'offset': '0',
-        'limit': '20',
+        'limit': '20'
       };
-      final response = await _client.get(Uri.https(apiUrl, apiUrlAssetsPath, queryParameters));
+      var url = Uri.https(apiUrl, apiUrlAssetsPath, queryParameters);
+      final response = await _client.get(url);
       if (response.statusCode == 200) {
         responseModel = true;
       } else {
@@ -33,10 +35,9 @@ class OpenSeaApiImpl extends OpenSeaApi {
       }
     } on SocketException {
       return Future.error('No Internet connection 😑');
-    } on FormatException {
+    } on FormatException catch (error) {
       return Future.error('Bad response format 👎');
     } on Exception catch (error) {
-      print(error);
       return Future.error('Unexpected error 😢');
     }
     return responseModel;
