@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nft_stock/src/common/locator.dart';
+import 'package:nft_stock/src/remote/opensea_api.dart';
 
 class HomePage extends StatelessWidget {
   static const route = "home";
@@ -20,6 +22,10 @@ class HomePage extends StatelessWidget {
                     hintText: "Put address here.")),
             const SizedBox(width: double.infinity, height: 16,),
             InkWell(
+              onTap: () async {
+                locator.get<OpenSeaApi>().getAssets();
+                print("MTFCK");
+              },
               child: Container(
                 width: 60,
                 height: 60,

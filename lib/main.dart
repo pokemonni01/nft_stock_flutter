@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nft_stock/src/presentation/home/home_page.dart';
 
-import 'common/router.dart';
+import 'src/common/locator.dart';
+import 'src/common/router.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
