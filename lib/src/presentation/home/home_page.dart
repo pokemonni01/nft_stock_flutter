@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:nft_stock/src/common/locator.dart';
 import 'package:nft_stock/src/remote/opensea_api.dart';
 
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(width: double.infinity, height: 16,),
             InkWell(
               onTap: () async {
-                locator.get<OpenSeaApi>().getAssets();
+                Get.find<OpenSeaApi>().getAssets();
                 print("MTFCK");
               },
               child: Container(
