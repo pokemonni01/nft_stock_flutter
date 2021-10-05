@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nft_stock/src/common/locator.dart';
+import 'package:nft_stock/src/presentation/nftasset/nft_asset_page.dart';
+import 'package:nft_stock/src/presentation/nftasset/nft_asset_page_argument.dart';
 import 'package:nft_stock/src/remote/opensea_api.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,11 +23,16 @@ class HomePage extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Put address here.")),
-            const SizedBox(width: double.infinity, height: 16,),
+            const SizedBox(
+              width: double.infinity,
+              height: 16,
+            ),
             InkWell(
               onTap: () async {
-                Get.find<OpenSeaApi>().getAssets();
-                print("MTFCK");
+                Get.to(const NftAssetPage(
+                    nftAssetPageArgument: NftAssetPageArgument(
+                        ownerAddress: "Test ",
+                        nftList: [false, false, false, false, false, false, false, false, false, false, false, false, false, false])));
               },
               child: Container(
                 width: 60,

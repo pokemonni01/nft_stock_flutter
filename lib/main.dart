@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nft_stock/src/presentation/home/home_page.dart';
 
 import 'src/common/locator.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'NFT Stock',
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
