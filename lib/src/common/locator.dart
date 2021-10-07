@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:nft_stock/src/data/nftasset/nft_asset_repository.dart';
+import 'package:nft_stock/src/data/nftasset/remote/opensea_api.dart';
 import 'package:nft_stock/src/domain/nftasset/get_nft_asset_use_case.dart';
 import 'package:nft_stock/src/presentation/nftasset/nft_asset_controller.dart';
 import 'package:nft_stock/src/presentation/nftasset/nft_asset_state.dart';
-import 'package:nft_stock/src/remote/opensea_api.dart';
 
 import 'logger_interceptor.dart';
 

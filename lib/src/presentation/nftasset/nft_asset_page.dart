@@ -19,22 +19,16 @@ class NftAssetPage extends StatelessWidget {
     final NftAssetController controller = Get.find();
     controller.init(nftAssetPageArgument);
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("NFT Asset"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SafeArea(
           child: Obx(() => Column(
             children: [
               Text("Owner Address: ${controller.ownerAddress}"),
-              InkWell(
-                onTap: () {
-                  controller.updateName("name");
-                },
-                child: Container(
-                  color: Colors.green,
-                  width: 50,
-                  height: 50,
-                ),
-              ),
               const SizedBox(height: defaultSize,),
               Expanded(
                 child: ListView.builder(

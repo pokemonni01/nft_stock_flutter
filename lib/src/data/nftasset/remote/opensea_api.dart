@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:nft_stock/src/common/constants.dart';
+import 'package:nft_stock/src/data/nftasset/remote/response/nft_asset_response.dart';
 
 abstract class OpenSeaApi {
-  Future<bool> getAssets();
+  Future<NftAssetResponse> getAssets();
 }
 
 class OpenSeaApiImpl extends OpenSeaApi {
@@ -13,12 +15,11 @@ class OpenSeaApiImpl extends OpenSeaApi {
   OpenSeaApiImpl(this._client);
 
   @override
-  Future<bool> getAssets() async {
-    print("getAssets");
-    var responseModel;
+  Future<NftAssetResponse> getAssets() async {
+    NftAssetResponse responseModel;
     try {
       final queryParameters = {
-        'owner': '0x6b008e74f2cfc661babba620e319b4778216a8fa',
+        'owner': '0xb47449075b1b1780393470c006897212e272d1c0',
         'order_direction': 'desc',
         'offset': '0',
         'limit': '20'
@@ -26,18 +27,18 @@ class OpenSeaApiImpl extends OpenSeaApi {
       var url = Uri.https(apiUrl, apiUrlAssetsPath, queryParameters);
       final response = await _client.get(url);
       if (response.statusCode == 200) {
-        responseModel = true;
+        responseModel = NftAssetResponse.fromJson(jsonDecode(response.body));
       } else {
         return Future.error(
           "Error while fetching.",
-          StackTrace.fromString("${response.body}"),
+          StackTrace.fromString(response.body),
         );
       }
     } on SocketException {
       return Future.error('No Internet connection 😑');
-    } on FormatException catch (error) {
+    } on FormatException {
       return Future.error('Bad response format 👎');
-    } on Exception catch (error) {
+    } on Exception {
       return Future.error('Unexpected error 😢');
     }
     return responseModel;

@@ -1,9 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:nft_stock/src/common/app_icon.dart';
 import 'package:nft_stock/src/domain/nftasset/nft_asset.dart';
 
 import 'nft_collection_name_widget.dart';
-import 'nft_price_widget.dart';
 
 class NftAssetPriceWidget extends StatelessWidget {
 
@@ -16,24 +14,10 @@ class NftAssetPriceWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              NftCollectionNameWidget(collectionName: nftAsset?.collectionName ?? "", isCollectionVerified: nftAsset?.isCollectionVerified ?? false,),
-              Text("Best Offer")
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(nftAsset?.name ?? ""),
-              NftPriceWidget(
-                cryptoCurrencyIcon: nftAsset?.cryptoCurrency == "weth" ? AppIcon.weth : AppIcon.eth  ,
-                price: nftAsset?.price ?? "0.0",
-              )
-            ],
-          )
+          NftCollectionNameWidget(collection: nftAsset?.collection,),
+          Text(nftAsset?.name ?? "")
         ],
       ),
     );
