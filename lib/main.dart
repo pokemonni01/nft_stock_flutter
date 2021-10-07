@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nft_stock/src/presentation/home/home_page.dart';
 
 import 'src/common/locator.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.blue,
+        fontFamily: GoogleFonts.poppins().fontFamily
       ),
       initialRoute: HomePage.route,
       routes: appRoutes,
