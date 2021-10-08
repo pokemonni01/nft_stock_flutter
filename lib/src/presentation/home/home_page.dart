@@ -15,6 +15,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("NFT Stock", style: TextStyle(color: Color.fromRGBO(4, 7, 29, 100), fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -30,10 +35,12 @@ class HomePage extends StatelessWidget {
             ),
             InkWell(
               onTap: () async {
-                List<NftAsset> response = await Get.find<GetNftAssetUseCase>().invoke("ownerAddress");
+                List<NftAsset> response =
+                    await Get.find<GetNftAssetUseCase>().invoke("ownerAddress");
                 print(response);
                 Get.to(NftAssetPage(
-                    nftAssetPageArgument: NftAssetPageArgument(ownerAddress: "ownerAddress ", nftList: response)));
+                    nftAssetPageArgument: NftAssetPageArgument(
+                        ownerAddress: "ownerAddress ", nftList: response)));
               },
               child: Container(
                 width: 60,
