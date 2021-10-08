@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:nft_stock/src/common/constants.dart';
+import 'package:nft_stock/src/data/nftasset/remote/request/nft_asset_request.dart';
 import 'package:nft_stock/src/data/nftasset/remote/response/nft_asset_response.dart';
 
 abstract class OpenSeaApi {
-  Future<NftAssetResponse> getAssets();
+  Future<NftAssetResponse> getAssets(NftAssetRequest request);
 }
 
 class OpenSeaApiImpl extends OpenSeaApi {
@@ -15,14 +16,14 @@ class OpenSeaApiImpl extends OpenSeaApi {
   OpenSeaApiImpl(this._client);
 
   @override
-  Future<NftAssetResponse> getAssets() async {
+  Future<NftAssetResponse> getAssets(NftAssetRequest request) async {
     NftAssetResponse responseModel;
     try {
       final queryParameters = {
-        'owner': '0xb47449075b1b1780393470c006897212e272d1c0',
-        'order_direction': 'desc',
-        'offset': '0',
-        'limit': '20'
+        'owner': request.ownerAddress,
+        'order_direction': request.orderDirection,
+        'offset': request.offset.toString(),
+        'limit': request.limit.toString()
       };
       var url = Uri.https(apiUrl, apiUrlAssetsPath, queryParameters);
       final response = await _client.get(url);

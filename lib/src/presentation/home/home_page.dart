@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:nft_stock/src/common/locator.dart';
 import 'package:nft_stock/src/domain/nftasset/get_nft_asset_use_case.dart';
 import 'package:nft_stock/src/domain/nftasset/nft_asset.dart';
+import 'package:nft_stock/src/domain/nftasset/nft_asset_body.dart';
 import 'package:nft_stock/src/presentation/nftasset/nft_asset_page.dart';
 import 'package:nft_stock/src/presentation/nftasset/nft_asset_page_argument.dart';
 
@@ -36,8 +36,7 @@ class HomePage extends StatelessWidget {
             InkWell(
               onTap: () async {
                 List<NftAsset> response =
-                    await Get.find<GetNftAssetUseCase>().invoke("ownerAddress");
-                print(response);
+                    await Get.find<GetNftAssetUseCase>().invoke(NftAssetBody(ownerAddress: "0xb47449075b1b1780393470c006897212e272d1c0"));
                 Get.to(NftAssetPage(
                     nftAssetPageArgument: NftAssetPageArgument(
                         ownerAddress: "ownerAddress ", nftList: response)));
