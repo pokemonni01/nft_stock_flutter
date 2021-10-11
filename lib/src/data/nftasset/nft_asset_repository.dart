@@ -16,9 +16,9 @@ class NftAssetRepositoryImpl extends NftAssetRepository {
     var response = await openSeaApi.getAssets(body.toRequestModel()).then((value) => value
         .nftAssetList
         ?.map((entry) => NftAsset(
-            imageUrl: entry.imageUrl,
-            name: entry.name,
-            collection: entry.collection.toDomainModel()))
+            imageUrl: entry.imageUrl ?? "",
+            name: entry.name ?? "",
+            collection: entry.collection?.toDomainModel()))
         .toList());
     return response ?? [];
   }

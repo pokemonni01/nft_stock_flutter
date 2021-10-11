@@ -21,13 +21,13 @@ class NftAssetModelResponse {
   NftAssetModelResponse(this.imageUrl, this.name, this.collection);
 
   @JsonKey(name: 'image_url')
-  final String imageUrl;
+  final String? imageUrl;
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   @JsonKey(name: 'collection')
-  final NftAssetCollectionResponse collection;
+  final NftAssetCollectionResponse? collection;
 
   factory NftAssetModelResponse.fromJson(Map<String, dynamic> json) =>
       _$NftAssetModelResponseFromJson(json);
@@ -68,19 +68,19 @@ class NftAssetPaymentTokenResponse {
       this.id, this.symbol, this.address, this.imageUrl, this.name);
 
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   @JsonKey(name: 'symbol')
-  final String symbol;
+  final String? symbol;
 
   @JsonKey(name: 'address')
-  final String address;
+  final String? address;
 
   @JsonKey(name: 'image_url')
-  final String imageUrl;
+  final String? imageUrl;
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   factory NftAssetPaymentTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$NftAssetPaymentTokenResponseFromJson(json);
@@ -89,10 +89,10 @@ class NftAssetPaymentTokenResponse {
 
   NftAssetPaymentToken toDomainModel() {
     return NftAssetPaymentToken(
-        id: id,
-        symbol: symbol,
-        address: address,
-        imageUrl: imageUrl,
-        name: name);
+        id: id ?? "",
+        symbol: symbol ?? "",
+        address: address ?? "",
+        imageUrl: imageUrl ?? "",
+        name: name ?? "");
   }
 }

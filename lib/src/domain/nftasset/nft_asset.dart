@@ -6,7 +6,7 @@ class NftAsset {
 
   final String imageUrl;
   final String name;
-  final NftAssetCollection collection;
+  final NftAssetCollection? collection;
 }
 
 class NftAssetCollection {

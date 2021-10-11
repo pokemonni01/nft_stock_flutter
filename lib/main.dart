@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: GoogleFonts.poppins().fontFamily
       ),
-      initialRoute: HomePage.route,
-      routes: appRoutes,
+      home: const HomePage(),
     );
   }
 }
